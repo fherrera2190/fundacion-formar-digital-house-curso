@@ -1,0 +1,31 @@
+.music main ul {
+    margin-left: 30px;
+}
+
+.music main a {
+    color: grey;
+}
+
+.music main section p {
+    line-height: 10px;
+    font-size: 11px;
+}
+.music main section{
+    margin-top:60px;
+}
+.music main ol {
+    list-style-type: decimal-leading-zero;
+    font-size: 14px;
+    line-height: 14px;
+    padding-left: 30px;
+}
+
+.music main section img {
+    width: 640px;
+}
+
+.music main section iframe {
+    width: 640px;
+    height: 360px;
+    border-style: none;
+}
