@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/* font-family: 'Roboto', sans-serif; */
+@import "/css/general.css";
+@import "/css/header.css";
+@import "/css/register.css";
+@import "/css/login.css";
+@import "/css/home.css";
+@import "/css/footer.css";
