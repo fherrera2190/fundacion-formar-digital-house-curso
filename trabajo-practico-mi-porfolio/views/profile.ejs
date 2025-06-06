@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs',{title:'Profile'})%>
+
+    <body>
+        <%- include('./partials/header.ejs',{title:'PROFILE', page:'home', clase:'bgimg-1'})%>
+            <div class="mvc-content mvc-container mvc-padding-64" id="users">
+                <h3 class="mvc-center">Data</h3>
+                <hr>
+                <% if(user){ %>
+                    <ul>
+                        <li>Nombre: <%=user.name %>
+                        </li>
+                        <li>Edad: <%=user.edad %>
+                        </li>
+                        <li>Estado civil: <%=user.married %>
+                        </li>
+                    </ul>
+                    <%}else{ %>
+                        <h2>El usuario no existe!</h2>
+                        <%} %>
+            </div>
+            <%- include('partials/footer.ejs') %>
+                <%- include('partials/scripts.ejs') %>
+    </body>
+</html>

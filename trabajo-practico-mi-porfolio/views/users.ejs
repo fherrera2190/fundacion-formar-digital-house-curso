@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs',{title:'USERS'})%>
+
+    <body>
+        <%- include('./partials/header.ejs',{title:'Clientes', page:'home', clase:'bgimg-1'})%>
+            <div class="mvc-content mvc-container mvc-padding-64" id="users">
+                <h3 class="mvc-center">Users</h3>
+                <hr>
+                <ul>
+                    <% users.forEach(user=> { %>
+                        <li>
+                            <a href="/users/profile/<%= user.id  %>">
+                                <%= user.name%>
+                            </a>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+            <%- include('partials/footer.ejs') %>
+                <%- include('partials/scripts.ejs') %>
+    </body>
+
+</html>
