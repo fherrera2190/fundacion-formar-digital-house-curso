@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Formulario de creación'}) %>
+
+<body>
+  <!-- Header -->
+  <%- include('partials/headerNavbar') %>
+  <!-- /Header -->
+
+  <div class="container products-wrapper">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="products-title">Formulario de creación de productos</h2>
+      </div>
+    </div>
+    <div class="col-12">
+      <form action="/products/create" method="POST" enctype="multipart/form-data">
+        <div class="row product-detail">
+          <div class="col-12 col-lg-6">
+
+            <div>
+              <label for="name" class="form-label">Nombre del producto (*) </label>
+              <input type="text" id="name" name="name" placeholder="Ej: Zapatillas Reebok" class="form-input" value="<%=locals.old&&(locals.old.name&&locals.old.name)%>">
+              <% if (locals.errors) { %>
+              <small class="text-danger" style="color:red;font-size: 12px;"><%=errors.name &&(errors.name.msg&&errors.name.msg) %></small>
+              <% } %>
+            </div>
+            <div>
+              <label for="price" class="form-label">Precio del producto (*)</label>
+              <input type="number" id="price" name="price" min="1" placeholder="Ej: 5678" class="form-input" value="<%=locals.old&&(locals.old.price&&locals.old.price)%>">
+              <% if (locals.errors) { %>
+              <small class="text-danger" style="color:red;font-size: 12px;"><%=errors.price &&(errors.price.msg&&errors.price.msg) %></small>
+              <% } %>
+            </div>
+            <div>
+              <label for="discount" class="form-label">Descuento (*)</label>
+              <input type="number" id="discount" name="discount" placeholder="Ej: 15" class="form-input" value="<%=locals.old&&(locals.old.discount&&locals.old.discount)%>">
+              <% if (locals.errors) { %>
+              <small class="text-danger" style="color:red;font-size: 12px;"><%=errors.discount &&(errors.discount.msg&&errors.discount.msg) %></small>
+              <% } %>
+            </div>
+            <div>
+              <label for="categoryId" class="form-label">Categoría (*)</label>
+              <select name="categoryId" id="categoryId" class="form-input">
+                <option value="" selected hidden>Elegí</option>
+                <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"><%= category.name %></option>
+                <% }) %>
+              </select>
+              <% if (locals.errors) { %>
+              <small class="text-danger" style="color:red;font-size: 12px;"><%=errors.categoryId &&(errors.categoryId.msg&&errors.categoryId.msg) %></small>
+              <% } %>
+            </div>
+            <div>
+              <label for="description" class="form-label">Descripción:</label>
+              <textarea name="description" id="description" class="form-input"></textarea>
+              <% if (locals.errors) { %>
+                <small class="text-danger" style="color:red;font-size: 12px;"><%=errors.description &&(errors.description.msg&&errors.description.msg) %></small>
+                <% } %>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-6 d-flex flex-column mt-3">
+            <img src="/images/products/default-image.png" class="img-thumbnail" alt="">
+            <label for="image" class="action-button edit">Subir Imagen</label>
+            <input hidden class="form-control" type="file" id="image" name="image">
+          </div>
+          <div class="col-12 mt-5 d-flex justify-content-center justify-content-lg-end">
+            <a href="/" class="cancel-button mr-5">Cancelar</a>
+            <button type="submit" class="buy-now-button">Guardar producto</button>
+          </div>
+      </form>
+    </div>
+
+  </div>
+  <!-- /todos los productos -->
+
+  <!-- footer -->
+  <%- include('partials/footer') %>
+  <!-- /footer -->
+</body>
+
+</html>

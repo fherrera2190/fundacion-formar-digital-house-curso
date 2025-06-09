@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Todos los productos'}) %>
+
+<body>
+  <!-- Header -->
+  <%- include('partials/headerNavbar') %>
+  <!-- /Header -->
+
+  <!-- todos los productos -->
+  <%- include('./partials/products-wrapper.ejs',{
+		title:'Todos los productos', 
+		section:'all',
+		productsShow:products,
+		}) %>
+  <!-- /todos los productos -->
+
+  <!-- footer -->
+  <%- include('partials/footer') %>
+  <!-- /footer -->
+</body>
+
+</html>
