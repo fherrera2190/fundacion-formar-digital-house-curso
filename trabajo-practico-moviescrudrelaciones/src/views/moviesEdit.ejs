@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('./partials//head.ejs', {title:`Edit Movie ${Movie.title}`}) %>
+
+<body>
+  <%- include('./partials/header.ejs') %>
+  <h1 class="titulo">Película Editada: <%= Movie.title %></h1>
+  <section class="form-control p-3">
+    <form class="row" action="/movies/update/<%= Movie.id %>?_method=PUT" enctype="multipart/form-data" method="post">
+      <div class="col-4">
+        <div class="d-flex justify-content-center flex-column align-items-center  ">
+          <div class="d-flex justify-content-center align-items-center border" style="height: 200px; width: 200px;">
+            <img class="img-fluid" src="/img/peliculas/<%=Movie.image?Movie.image:"logo-DH.png"%>" alt="">
+          </div>
+          <label for="image" class="my-3 btn btn-dark ">Subir Imagen</label>
+          <input hidden class="form-control" type="file" id="image" name="image">
+        </div>
+        <div>
+          <label class="form-label" for="title">Title </label>
+          <input class="form-control" type="text" name="title" id="title" value="<%= Movie.title %>" required>
+        </div>
+
+        <div>
+          <label class="form-label" for="rating">Rating </label>
+          <input class="form-control " type="number" name="rating" id="rating" value="<%= Movie.rating %>" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="awards">Awards </label>
+          <input class="form-control" type="number" name="awards" id="awards" value="<%= Movie.awards %>" required>
+
+        </div>
+        <div class="mb-3">
+          <label class="form-label " for="release_date">Release date </label>
+          <input class="form-control" type="date" name="release_date" id="release_date" value="<%=moment(Movie.release_date).format('YYYY-MM-DD') %>" required>
+        </div>
+
+        <div class="mb-3">
+
+          <label class="form-label " for="length">Length </label>
+          <input class="form-control" type="number" name="length" id="length" value="<%= Movie.length %>" required>
+        </div>
+        <div>
+          <label class="form-label " for="genre_id">Genre </label>
+          <select class="form-control" name="genre_id" id="" required>
+            <% allGenres.forEach(genre => { %>
+            <option value="<%= genre.id %>" <% if (Movie.genre_id == genre.id) { %><%= 'selected' %><% }; %>><%= genre.name %></option>
+            <% }); %>
+          </select>
+        </div>
+      </div>
+      <!--
+            <label for="genre_id">Genre ID </label>
+            <p><input type="number" name="genre_id" id="" value="<%= Movie.genre_id %>"></p>
+        -->
+      <div class="col-8  border-start  p-4">
+        <h5 class="form-label ">Actores</h5>
+        <hr>
+        <div class="row row-cols-4 ">
+          <% actors.forEach(actor => { %>
+          <div class="form-check">
+            <input class="form-check-input" name="actors" type="checkbox" <%= Movie.actors.map(actor=> actor.id).includes(actor.id) && 'checked'%> value="<%= actor.id %>" id="actor<%= actor.id %>">
+            <label class="form-check-label" for="actor<%= actor.id %>">
+              <%= actor.first_name %> <%= actor.last_name %>
+            </label>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-3 gap-5">
+        <button class="btn btn-success " type="submit">Actualizar</button>
+        <a class="btn btn-danger  " href="/movies">Cancelar</a>
+      </div>
+    </form>
+  </section>
+  <%- include('./partials/scripts.ejs') %>
+</body>
+
+</html>

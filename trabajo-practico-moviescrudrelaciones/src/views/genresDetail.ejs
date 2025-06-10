@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('./partials/head.ejs',{title:genre.name})%>
+
+<body>
+  <%- include('./partials/header.ejs') %>
+  <h1><%= genre.name %> </h1>
+  <a class="botonVolver" href="/">Atras</a>
+  <hr>
+  <p>NAME: <%= genre.name %> </p>
+  <p>RANKIG: <%= genre.ranking %> </p>
+  <div class="container">
+    <div class="d-flex justify-content-start  gap-5  flex-wrap ">
+      <% if (genre.movies.length>0) { %>
+      <% for( let i = 0; i < genre.movies.length; i++ ) { %>
+      <%-include('./partials/movieCard.ejs',{url:"/movies/detail/"+genre.movies[i].id, title:genre.movies[i].title,image:genre.movies[i].image}) %>
+      <% } %>
+      <% }else{ %>
+        <p class="fs-2">No hay peliculas con este genero :-(</p>
+      <% } %>
+    </div>
+  </div>
+  <%-include('./partials/scripts.ejs') %>
+</body>
+
+</html>

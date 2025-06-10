@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs',{title:'Listado de Películas'}) %>
+
+<body>
+  <%- include('./partials/header.ejs') %>
+  <h1>LISTADO DE PELÍCULAS</h1>
+  <br>
+  <p>
+    <a class="botonVolver" href="/">inicio</a>
+    <a class="botonAgregar" href="/movies/add">Agregar una Pelicula</a>
+  </p>
+  <br>
+  <div class="container">
+    <div class="d-flex justify-content-start  gap-3  flex-wrap ">
+      <% for( let i = 0; i < movies.length; i++ ) { %>
+      <%-include('./partials/movieCard.ejs',{url:"/movies/detail/"+movies[i].id, title:movies[i].title, image:movies[i].image}) %>
+      <% } %>
+    </div>
+  </div>
+  <%- include('./partials/scripts.ejs') %>
+</body>
+
+</html>

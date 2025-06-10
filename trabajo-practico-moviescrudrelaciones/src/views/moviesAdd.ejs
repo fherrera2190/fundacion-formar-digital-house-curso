@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('./partials/head.ejs',{title:"Movies Add"}) %>
+
+<body>
+  <%- include('./partials/header.ejs') %>
+  <section class="form-control p-3">
+    <form class="row" action="/movies/create" method="POST" enctype="multipart/form-data">
+      <div class="col-4">
+        <div class="d-flex justify-content-center flex-column align-items-center  ">
+          <div class="d-flex justify-content-center align-items-center border" style="height: 200px; width: 200px;">
+            <img class="img-fluid" src="/img/logo-DH.png" alt="">
+          </div>
+          <label for="image" class="my-3 btn btn-dark ">Subir Imagen</label>
+          <input hidden class="form-control" type="file" id="image" name="image">
+        </div>
+
+        <div>
+          <label class="form-label" for="title">Title </label>
+          <input class="form-control" type="text" name="title" id="title" required>
+        </div>
+
+        <div>
+          <label class="form-label" for="rating">Rating </label>
+          <input class="form-control " type="number" name="rating" id="rating" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="awards">Awards </label>
+          <input class="form-control" type="number" name="awards" id="awards" required>
+
+        </div>
+        <div class="mb-3">
+          <label class="form-label " for="release_date">Release date </label>
+          <input class="form-control" type="date" name="release_date" id="release_date" required>
+        </div>
+
+        <div class="mb-3">
+
+          <label class="form-label " for="length">Length </label>
+          <input class="form-control" type="number" name="length" id="length" required>
+        </div>
+        <div>
+          <label class="form-label " for="genre_id">Genre </label>
+
+          <select class="form-control" name="genre_id" id="" required>
+            <option value="" disabled selected>- select genre - </option>
+            <% allGenres.forEach(genre => { %>
+            <option value="<%= genre.id %>"><%= genre.name %></option>
+            <% }); %>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-8  border-start  p-4">
+        <h5 class="form-label ">Actores</h5>
+        <hr>
+        <div class="row row-cols-3">
+          <% actors.forEach(actor => { %>
+          <div class="form-check">
+            <input class="form-check-input" name="actors" type="checkbox" value="<%= actor.id %>" id="actor<%= actor.id %>">
+            <label class="form-check-label" for="actor<%= actor.id %>">
+              <%= actor.first_name %> <%= actor.last_name %>
+            </label>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-3 gap-5">
+        <button class="botonAgregar" type="submit">Agregar</button>
+        <a class="botonVolver" href="/movies">Listado de Películas</a>
+      </div>
+    </form>
+  </section>
+  <%- include('./partials/scripts.ejs') %>
+</body>
+
+</html>
