@@ -5,9 +5,11 @@ const express = require("express");
 const logger = require("morgan");
 const path = require("path");
 const methodOverride = require("method-override"); // Pasar poder usar los métodos PUT y DELETE
+const cors = require('cors')
 const paginate = require("express-paginate");
 // ************ express() - (don't touch) ************
 const app = express();
+app.use(cors());
 
 // ************ Middlewares - (don't touch) ************
 app.use(express.static(path.join(__dirname, "../public"))); // Necesario para los archivos estáticos en el folder /public
