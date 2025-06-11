@@ -6,7 +6,14 @@ module.exports = {
     database: process.env.DB_DATABASE_DEV,
     host: process.env.DB_HOST_DEV,
     port: process.env.DB_LOCALHOST_DEV,
-    dialect: "mysql"
+    dialect: process.env.DB_DIALECT,
+    dialectOptions: process.env.DB_SSL === "true" ? {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
+      : null
   },
   test: {
     username: "root",
