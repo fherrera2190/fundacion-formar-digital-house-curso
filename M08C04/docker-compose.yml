@@ -1,0 +1,16 @@
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: movies-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: ${DB_DATABASE_DEV}
+      MYSQL_USER: ${DB_USERNAME_DEV}
+      MYSQL_PASSWORD: ${DB_PASSWORD_DEV}
+    ports:
+      - "${DB_PORT_DEV}:3306"
+    volumes:
+      - ./src/script/movies-db.sql:/docker-entrypoint-initdb.d/movies-db.sql
+      - ./mysql:/data/db
