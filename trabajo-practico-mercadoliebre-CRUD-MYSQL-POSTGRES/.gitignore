@@ -39,7 +39,6 @@ Thumbs.db
 
 # Another Specials #
 ####################
-*.yml
 *.cfg
 .htaccess
 *.config

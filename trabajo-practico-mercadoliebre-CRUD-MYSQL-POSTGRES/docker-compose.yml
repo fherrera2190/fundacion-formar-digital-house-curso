@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mercadolibre-mysql
+    profiles:
+      - mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: ${DB_DATABASE_DEV}
+      MYSQL_USER: ${DB_USERNAME_DEV}
+      MYSQL_PASSWORD: ${DB_PASSWORD_DEV}
+    ports:
+      - "${DB_PORT_DEV}:3306"
+    volumes:
+      - ./mysql:/data/db
+
+  postgres:
+    image: postgres:latest
+    container_name: mercadolibre-postgres
+    profiles:
+      - postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_DATABASE_DEV}
+      POSTGRES_USER: ${DB_USERNAME_DEV}
+      POSTGRES_PASSWORD: ${DB_PASSWORD_DEV}
+    ports:
+      - "${DB_PORT_DEV}:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
